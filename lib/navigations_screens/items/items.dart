@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:harsh_enjoyicecream/navigations_screens/items/regular.dart';
+import 'package:harsh_enjoyicecream/screen/home_screen.dart';
 
 class inventory extends StatefulWidget {
   @override
@@ -31,7 +32,11 @@ class _inventoryState extends State<inventory>
         backgroundColor: Color(0x86f57eb8),
         centerTitle: true,
         leading: BackButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+              return Home_Screen();
+            }));
+          },
         ),
         bottom: TabBar(
           controller: _tabController,

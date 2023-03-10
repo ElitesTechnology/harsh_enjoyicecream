@@ -23,7 +23,7 @@ class _Home_ScreenState extends State<Home_Screen> {
     const Page1(),
     const Page2(),
     counter(),
-    inventory(),
+    const Page1(),
     const Page5(),
   ];
 
@@ -42,6 +42,7 @@ class _Home_ScreenState extends State<Home_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0x86f57eb8),
         actions: [
           Padding(
             padding: EdgeInsets.only(left: MediaQueryConstants.isSmallScreen(context) * 0.2),
@@ -64,9 +65,11 @@ class _Home_ScreenState extends State<Home_Screen> {
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Inventory Management'),
               onTap: () {
-                // TODO: implement item 1 action
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                  return inventory();
+                }));
               },
             ),
             ListTile(
