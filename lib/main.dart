@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:harsh_enjoyicecream/aaaaaaa.dart';
-import 'package:harsh_enjoyicecream/bbbbbbb.dart';
+import 'package:harsh_enjoyicecream/My_phone.dart';
+import 'package:harsh_enjoyicecream/My_otp.dart';
 import 'package:harsh_enjoyicecream/screen/splash_screen.dart';
 
 void main() async {
