@@ -63,7 +63,7 @@ class _Home_ScreenState extends State<Home_Screen> {
               ),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Item 1asdsddsdcdscdsdsdsvsdcds'),
               onTap: () {
                 // TODO: implement item 1 action
               },
