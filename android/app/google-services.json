@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "561865825849",
+    "project_id": "enjoyicecream-f074c",
+    "storage_bucket": "enjoyicecream-f074c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561865825849:android:6ec96ec1a434762e49b7e8",
+        "android_client_info": {
+          "package_name": "com.example.harsh_enjoyicecream"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561865825849-12of47at3hq43qug4v0fh5j3k51fcsbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVx3ImswiObkTnqEsSoZoWFZrd0PJkz_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561865825849-12of47at3hq43qug4v0fh5j3k51fcsbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
