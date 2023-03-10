@@ -1,5 +1,6 @@
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:harsh_enjoyicecream/navigations_screens/items/items.dart';
 import 'package:harsh_enjoyicecream/screen/new_contact.dart';
 import '../constants/mediaquery.dart';
 import '../navigations_screens/new_order.dart';
@@ -22,7 +23,7 @@ class _Home_ScreenState extends State<Home_Screen> {
     const Page1(),
     const Page2(),
     counter(),
-    const Page4(),
+    inventory(),
     const Page5(),
   ];
 
@@ -188,15 +189,6 @@ class Page2 extends StatelessWidget {
 }
 
 
-class Page4 extends StatelessWidget {
-  const Page4({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.blue, child: const Center(child: Text('Page 4')));
-  }
-}
 
 class Page5 extends StatelessWidget {
   const Page5({Key? key}) : super(key: key);
