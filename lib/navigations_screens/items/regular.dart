@@ -36,14 +36,6 @@ class _RegularState extends State<Regular> {
             });
           },
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.search_rounded,
-            ),
-          ),
-        ],
       ),
       body: ListView.builder(
         itemCount: _items.length,
