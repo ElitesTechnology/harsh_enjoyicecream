@@ -21,6 +21,12 @@ class _RegularState extends State<Regular> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.search_rounded,
+          ),
+        ),
         backgroundColor: Color(0x25f57eb8),
         title: TextField(
           controller: _controller,
