@@ -117,7 +117,9 @@ class _login_eState extends State<login_e> {
                       children: [
                         SignInButton.mini(
                           buttonType: ButtonType.google,
-                          onPressed: (){},
+                          onPressed: (){
+                            _signIn();
+                          },
                         ),
                         IconButton(
                           onPressed: (){
@@ -147,7 +149,7 @@ class _login_eState extends State<login_e> {
     });
   }
 
-  Future<void> _signIn() async {
+Future<void> _signIn() async {
     try {
       await googleSignIn.signIn();
       setState(() {
