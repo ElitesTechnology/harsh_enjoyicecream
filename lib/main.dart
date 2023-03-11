@@ -39,7 +39,7 @@ class _DynamicGridViewState extends State<DynamicGridView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dynamic GridView"),
+        title: Text("DynamicGridView"),
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(10),
