@@ -1,4 +1,8 @@
+import 'dart:core';
+
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:harsh_enjoyicecream/My_phone.dart';
@@ -33,13 +37,17 @@ class DynamicGridView extends StatefulWidget {
 }
 
 class _DynamicGridViewState extends State<DynamicGridView> {
-  List<String> _items = List.generate(30, (index) => "Item $index");
+
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic> ls =  [];
+    List<String> _items = List.generate(ls.length, (index) => "$index");
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("DynamicGridView"),
+        title: Text("Dynamic GridView"),
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(10),
