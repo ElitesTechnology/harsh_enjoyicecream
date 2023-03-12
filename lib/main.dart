@@ -1,20 +1,16 @@
 import 'dart:core';
-
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:harsh_enjoyicecream/My_phone.dart';
-import 'package:harsh_enjoyicecream/My_otp.dart';
-import 'package:harsh_enjoyicecream/screen/splash_screen.dart';
+import 'package:harsh_enjoyicecream/screen/Add%20Product/add%20product.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: DynamicGridView(),
+    home: Add_Category(),
   ));
 }
 
