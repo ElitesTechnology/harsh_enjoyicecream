@@ -42,13 +42,15 @@ class _Add_CategoryState extends State<Add_Category> {
                     title: TextField(
                       controller: sampledata1,
                       decoration: InputDecoration(
-                        hintText: '',
+                        hintText: 'Add New Product',
                         border: OutlineInputBorder(),
                         labelText: 'Product Name',
+
                       ),
                       textInputAction: TextInputAction.next,
                       onChanged: (str) {
                         temp = str;
+
                       },
                     ),
                     content: Text('Are you sure ?'),
@@ -56,6 +58,7 @@ class _Add_CategoryState extends State<Add_Category> {
                       ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).pop();
+                          sampledata1.clear();
                         },
                         child: Text('No'),
                       ),
@@ -76,6 +79,7 @@ class _Add_CategoryState extends State<Add_Category> {
                               .doc('Product Name')
                               .get();
                           Navigator.pop(context);
+                          sampledata1.clear();
                         },
                         child: Text('Yes'),
                       ),
