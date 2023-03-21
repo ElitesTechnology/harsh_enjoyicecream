@@ -1,20 +1,22 @@
+// ignore_for_file: camel_case_types, use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:harsh_enjoyicecream/My_phone.dart';
 import 'package:harsh_enjoyicecream/screen/home_screen.dart';
 import 'package:sign_button/constants.dart';
 import 'package:sign_button/create_button.dart';
 
-class login_e extends StatefulWidget{
+class login_e extends StatefulWidget {
+  const login_e({super.key});
+
   @override
   State<login_e> createState() => _login_eState();
 }
 
 class _login_eState extends State<login_e> {
-
   var email = TextEditingController();
   var pass = TextEditingController();
 
@@ -23,13 +25,13 @@ class _login_eState extends State<login_e> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var _height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
           Image(
-            image: AssetImage(
+            image: const AssetImage(
               "assets/logo/ice.jpg",
             ),
             width: MediaQuery.of(context).size.width,
@@ -38,11 +40,11 @@ class _login_eState extends State<login_e> {
           ),
           Center(
             child: Container(
-              color: Color(0x8E7A7878),
-              height:_height*0.5,
-              width: _width*0.7,
+              color: const Color(0x8E7A7878),
+              height: height * 0.5,
+              width: width * 0.7,
               child: Padding(
-                padding: EdgeInsets.all(_height*0.04),
+                padding: EdgeInsets.all(height * 0.04),
                 child: Column(
                   children: [
                     TextField(
@@ -54,15 +56,16 @@ class _login_eState extends State<login_e> {
                             borderSide: BorderSide.none,
                           ),
                           filled: true,
-                          fillColor: Color(0xFFe7edeb),
+                          fillColor: const Color(0xFFe7edeb),
                           hintText: 'Username',
                           prefixIcon: Icon(
                             Icons.account_circle_sharp,
                             color: Colors.grey[600],
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       controller: pass,
                       obscureText: true,
@@ -73,17 +76,16 @@ class _login_eState extends State<login_e> {
                             borderSide: BorderSide.none,
                           ),
                           filled: true,
-                          fillColor: Color(0xfff3faf8),
+                          fillColor: const Color(0xfff3faf8),
                           hintText: 'Password',
                           prefixIcon: Icon(
                             Icons.lock,
                             color: Colors.grey[600],
-                          )
-                      ),
+                          )),
                     ),
                     TextButton(
-                      onPressed: (){},
-                      child: Text(
+                      onPressed: () {},
+                      child: const Text(
                         'Forgot password?',
                         style: TextStyle(
                           color: Colors.black87,
@@ -92,10 +94,13 @@ class _login_eState extends State<login_e> {
                     ),
                     AnimatedButton(
                       // animationDuration: Duration(seconds: 3),
-                      height: _height*0.05,
-                      width: _width*0.3,
+                      height: height * 0.05,
+                      width: width * 0.3,
                       text: 'LogIn',
-                      textStyle: TextStyle(color:  Color(0xFC060709),fontWeight: FontWeight.bold,fontSize: 16),
+                      textStyle: const TextStyle(
+                          color: Color(0xFC060709),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
                       isReverse: true,
                       selectedTextColor: Colors.white,
                       selectedBackgroundColor: Colors.black87,
@@ -103,13 +108,13 @@ class _login_eState extends State<login_e> {
                       backgroundColor: Colors.white,
                       borderRadius: 20,
                       borderWidth: 2,
-                      onPress: (){
+                      onPress: () {
                         sighIn();
                         //   Navigator.push(
                         //       context, MaterialPageRoute(builder: (context) => App()));
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Row(
@@ -117,17 +122,13 @@ class _login_eState extends State<login_e> {
                       children: [
                         SignInButton.mini(
                           buttonType: ButtonType.google,
-                          onPressed: (){
+                          onPressed: () {
                             _signIn();
                           },
                         ),
                         IconButton(
-                          onPressed: (){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                              return My_phone();
-                            }));
-                          },
-                          icon: Icon(Icons.call),
+                          onPressed: () {},
+                          icon: const Icon(Icons.call),
                         ),
                       ],
                     ),
@@ -141,23 +142,24 @@ class _login_eState extends State<login_e> {
     );
   }
 
-
-  _signOut() async{
+  _signOut() async {
     await googleSignIn.signOut();
     setState(() {
       isSignin = false;
     });
   }
 
-Future<void> _signIn() async {
+  Future<void> _signIn() async {
     try {
       await googleSignIn.signIn();
       setState(() {
         isSignin = true;
-        Home_Screen();
+        const Home_Screen();
       });
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -166,9 +168,7 @@ Future<void> _signIn() async {
         .signInWithEmailAndPassword(email: email.text, password: pass.text);
     await Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Home_Screen()),
+      MaterialPageRoute(builder: (context) => const Home_Screen()),
     );
   }
-
-
 }

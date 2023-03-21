@@ -1,16 +1,15 @@
+// ignore_for_file: camel_case_types, use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:harsh_enjoyicecream/My_phone.dart';
 import 'package:harsh_enjoyicecream/screen/home_screen.dart';
-import 'package:sign_button/create_button.dart';
 import 'package:sign_button/sign_button.dart';
 
-import '../../constants/mediaquery.dart';
-
 class signup_e extends StatefulWidget {
+  const signup_e({super.key});
+
   @override
   State<signup_e> createState() => _signup_eState();
 }
@@ -22,13 +21,13 @@ class _signup_eState extends State<signup_e> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var _height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
           Image(
-            image: AssetImage(
+            image: const AssetImage(
               "assets/logo/ice.jpg",
             ),
             width: MediaQuery.of(context).size.width,
@@ -37,14 +36,14 @@ class _signup_eState extends State<signup_e> {
           ),
           Center(
             child: Container(
-              color: Color(0x8E7A7878),
-              height: _height * 0.5,
-              width: _width * 0.7,
+              color: const Color(0x8E7A7878),
+              height: height * 0.5,
+              width: width * 0.7,
               child: Padding(
-                padding: EdgeInsets.all(_height * 0.04),
+                padding: EdgeInsets.all(height * 0.04),
                 child: Column(
                   children: [
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     TextField(
                       controller: email,
                       keyboardType: TextInputType.emailAddress,
@@ -54,14 +53,14 @@ class _signup_eState extends State<signup_e> {
                             borderSide: BorderSide.none,
                           ),
                           filled: true,
-                          fillColor: Color(0xFFe7edeb),
+                          fillColor: const Color(0xFFe7edeb),
                           hintText: 'Username',
                           prefixIcon: Icon(
                             Icons.account_circle_sharp,
                             color: Colors.grey[600],
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextField(
@@ -73,20 +72,20 @@ class _signup_eState extends State<signup_e> {
                             borderSide: BorderSide.none,
                           ),
                           filled: true,
-                          fillColor: Color(0xFFe7edeb),
+                          fillColor: const Color(0xFFe7edeb),
                           hintText: 'Password',
                           prefixIcon: Icon(
                             Icons.account_circle_sharp,
                             color: Colors.grey[600],
                           )),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     AnimatedButton(
                       // animationDuration: Duration(seconds: 3),
-                      height: _height * 0.05,
-                      width: _width * 0.3,
+                      height: height * 0.05,
+                      width: width * 0.3,
                       text: 'Sign Up',
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           color: Color(0xFC060709),
                           fontWeight: FontWeight.bold,
                           fontSize: 16),
@@ -97,12 +96,12 @@ class _signup_eState extends State<signup_e> {
                       backgroundColor: Colors.white,
                       borderRadius: 20,
                       borderWidth: 5,
-                      borderColor: Color(0xFCC07CA9),
+                      borderColor: const Color(0xFCC07CA9),
                       onPress: () {
                         sighUp();
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Row(
@@ -114,12 +113,9 @@ class _signup_eState extends State<signup_e> {
                         ),
                         IconButton(
                           onPressed: () {
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) {
-                              return My_phone();
-                            }));
+
                           },
-                          icon: Icon(Icons.call),
+                          icon: const Icon(Icons.call),
                         ),
                       ],
                     ),
@@ -138,7 +134,7 @@ class _signup_eState extends State<signup_e> {
         .createUserWithEmailAndPassword(email: email.text, password: pass.text);
     await Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Home_Screen()),
+      MaterialPageRoute(builder: (context) => const Home_Screen()),
     );
   }
 }

@@ -1,42 +1,29 @@
+// ignore_for_file: camel_case_types, use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'sub_category.dart';
 
-import '../constants/mediaquery.dart';
-import '../screen/Add Product/add_category.dart';
+class Show_Category extends StatefulWidget {
+  const Show_Category({Key? key}) : super(key: key);
 
-class New_order1 extends StatefulWidget {
   @override
-  State<New_order1> createState() => _New_order1State();
+  State<Show_Category> createState() => _Show_CategoryState();
 }
 
-class _New_order1State extends State<New_order1> {
-  List<String> _items = [];
-
+class _Show_CategoryState extends State<Show_Category> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: StreamBuilder(
           stream:
-          FirebaseFirestore.instance.collection('Add Customer').snapshots(),
+          FirebaseFirestore.instance.collection('Add Product').snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return Center(
+              return const Center(
                 child: Text("No Table Order"),
               );
             }
-            // return GridView.count(
-            //   crossAxisCount: 1,
-            //   children: snapshot.data!.docs.map((e) {
-            //     return Padding(
-            //       padding: const EdgeInsets.all(10.0),
-            //       child: Container(
-            //           color: Colors.blue,
-            //           child: Center(child: Text(e['C_Name']))),
-            //     );
-            //   }).toList(),
-            // );
             return ListView.builder(
                 itemCount: 1,
                 itemBuilder: (context, index) {
@@ -46,19 +33,19 @@ class _New_order1State extends State<New_order1> {
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: ListTile(
-                            onLongPress: () {
+                            onLongPress: (){
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text("Delete Contact"),
-                                    content: Text('Are you sure ?'),
+                                    title: const Text("Delete Contact"),
+                                    content: const Text('Are you sure ?'),
                                     actions: <Widget>[
                                       ElevatedButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('No'),
+                                        child: const Text('No'),
                                       ),
                                       ElevatedButton(
                                         onPressed: () async{
@@ -67,7 +54,7 @@ class _New_order1State extends State<New_order1> {
 
                                           Navigator.pop(context);
                                         },
-                                        child: Text('Yes'),
+                                        child: const Text('Yes'),
                                       ),
                                     ],
                                   );
@@ -75,17 +62,14 @@ class _New_order1State extends State<New_order1> {
                               );
                             },
                             onTap: () {
+                              print(snapshot.data!.docs[index].id);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Add_Category(),
+                                    builder: (context) => Sub_Category(e.get('subcat') ?? [],e.id),
                                   ));
                             },
-                            leading: CircleAvatar(
-                              child: Text(e['C_Name'][0]),
-                            ),
-                            title: Text(e['C_Name']),
-                            subtitle: Text(e['C_Phone']),
+                            title: Text(e['P_Name']),
                           ),
                         ),
                       );
@@ -97,6 +81,7 @@ class _New_order1State extends State<New_order1> {
   }
 
   deleteitem(id) {
-    FirebaseFirestore.instance.collection('Add Customer').doc(id).delete();
+    FirebaseFirestore.instance.collection('Add Product').doc(id).delete();
   }
+
 }

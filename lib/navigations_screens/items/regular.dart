@@ -145,14 +145,14 @@ class _RegularState extends State<Regular> {
                               ),
                               child: Center(
                                   child: TextButton(
-                                child: Text(
-                                  "Raguler",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onPressed: () {},
-                              )),
+                                    child: Text(
+                                      "Raguler",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                  )),
                             ),
                           ),
                         ),
@@ -199,14 +199,14 @@ class _RegularState extends State<Regular> {
                                   ),
                                   child: Center(
                                       child: TextButton(
-                                    child: Text(
-                                      "Weekly",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    onPressed: () {},
-                                  )),
+                                        child: Text(
+                                          "Weekly",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        onPressed: () {},
+                                      )),
                                 ),
                               ),
                             ),

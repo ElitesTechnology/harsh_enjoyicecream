@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:harsh_enjoyicecream/auth/google/signup.dart';
@@ -6,6 +7,8 @@ import 'package:harsh_enjoyicecream/auth/google/signup.dart';
 import 'login.dart';
 
 class login_signup extends StatefulWidget{
+  const login_signup({super.key});
+
   @override
   State<login_signup> createState() => _login_signupState();
 }
@@ -13,13 +16,13 @@ class login_signup extends StatefulWidget{
 class _login_signupState extends State<login_signup> {
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var _height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
           Image(
-            image: AssetImage(
+            image: const AssetImage(
               "assets/logo/ice.jpg",
             ),
             width: MediaQuery.of(context).size.width,
@@ -27,8 +30,8 @@ class _login_signupState extends State<login_signup> {
             fit: BoxFit.cover,
           ),
           Container(
-            height: _height,
-            decoration: BoxDecoration(
+            height: height,
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft:  Radius.elliptical(0,0),
                 topRight: Radius.elliptical(0,0),
@@ -37,7 +40,7 @@ class _login_signupState extends State<login_signup> {
               ),
               gradient: LinearGradient(
                 colors: [
-                  Color(0x3060709),
+                  Color(0x03060709),
                   Color(0x56060709),
                   Color(0xC0060709),
                   Color(0xFC060709),
@@ -48,23 +51,23 @@ class _login_signupState extends State<login_signup> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: _height*0.61,left: _width*0.3),
+            padding: EdgeInsets.only(top: height*0.61,left: width*0.3),
             child: Text(
               "Welcome",
               style: TextStyle(
-                fontSize: _height*0.05,
-                color: Color(0xddfaf7f8),
+                fontSize: height*0.05,
+                color: const Color(0xddfaf7f8),
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: _height*0.7,left: _width*0.13),
+            padding: EdgeInsets.only(top: height*0.7,left: width*0.13),
             child: Text(
               "Join With Ice Cream Corner",
               style: TextStyle(
-                fontSize: _height*0.03,
-                color: Color(0x6ffaf7f8),
+                fontSize: height*0.03,
+                color: const Color(0x6ffaf7f8),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -72,13 +75,13 @@ class _login_signupState extends State<login_signup> {
           Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: _height*0.8,left: _width*0.15),
+                padding: EdgeInsets.only(top: height*0.8,left: width*0.15),
                 child: AnimatedButton(
                   // animationDuration: Duration(seconds: 3),
-                  height: _height*0.07,
-                  width: _width*0.3,
+                  height: height*0.07,
+                  width: width*0.3,
                   text: 'LogIn',
-                  textStyle: TextStyle(color:  Color(0xFC060709),fontWeight: FontWeight.bold,fontSize: 16),
+                  textStyle: const TextStyle(color:  Color(0xFC060709),fontWeight: FontWeight.bold,fontSize: 16),
                   isReverse: true,
                   selectedTextColor: Colors.white,
                   selectedBackgroundColor: Colors.black87,
@@ -86,21 +89,21 @@ class _login_signupState extends State<login_signup> {
                   backgroundColor: Colors.white,
                   borderRadius: 20,
                   borderWidth: 5,
-                  borderColor: Color(0xFCC07CA9),
+                  borderColor: const Color(0xFCC07CA9),
                   onPress: (){
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => login_e()));
+                        context, MaterialPageRoute(builder: (context) => const login_e()));
                   },
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: _height*0.8,left: _width*0.12),
+                padding: EdgeInsets.only(top: height*0.8,left: width*0.12),
                 child: AnimatedButton(
                   // animationDuration: Duration(seconds: 3),
-                  height: _height*0.07,
-                  width: _width*0.3,
+                  height: height*0.07,
+                  width: width*0.3,
                   text: 'Sign Up',
-                  textStyle: TextStyle(color:  Color(0xFC060709),fontWeight: FontWeight.bold,fontSize: 16),
+                  textStyle: const TextStyle(color:  Color(0xFC060709),fontWeight: FontWeight.bold,fontSize: 16),
                   isReverse: true,
                   selectedTextColor: Colors.white,
                   selectedBackgroundColor: Colors.black87,
@@ -108,7 +111,7 @@ class _login_signupState extends State<login_signup> {
                   backgroundColor: Colors.white,
                   borderRadius: 20,
                   borderWidth: 5,
-                  borderColor: Color(0xFCC07CA9),
+                  borderColor: const Color(0xFCC07CA9),
                   onPress: (){
                     Navigator.push(
                         context, MaterialPageRoute(builder: (context) => signup_e()));

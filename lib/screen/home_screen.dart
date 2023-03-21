@@ -1,9 +1,14 @@
+// ignore_for_file: camel_case_types
+
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:harsh_enjoyicecream/navigations_screens/items/items.dart';
 import 'package:harsh_enjoyicecream/screen/new_contact.dart';
-import '../constants/mediaquery.dart';
 import '../navigations_screens/new_order.dart';
+import '../payment/payment_mode/payment_mode.dart';
+import 'Add Product/show_category.dart';
+import 'Add Product/today_order.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({Key? key}) : super(key: key);
@@ -13,6 +18,12 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
+  TextEditingController sampledata1 = TextEditingController();
+
+  final List<String> _items = [];
+  String? temp;
+
+
   /// Controller to handle PageView and also handles initial page
   final _pageController = PageController(initialPage: 2);
 
@@ -20,10 +31,10 @@ class _Home_ScreenState extends State<Home_Screen> {
 
   /// widget list
   final List<Widget> bottomBarPages = [
-    const Page1(),
-    const Page2(),
-    counter(),
-    const Page1(),
+     Today_order(),
+    payment(),
+    New_order1(),
+    const Show_Category(),
     const Page5(),
   ];
 
@@ -42,45 +53,101 @@ class _Home_ScreenState extends State<Home_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0x86f57eb8),
+        backgroundColor: const Color(0x86f57eb8),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(left: MediaQueryConstants.isSmallScreen(context) * 0.2),
-            child: IconButton(onPressed: (){
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                return New_Contact();
-              }));
-            }, icon: Icon(Icons.perm_contact_cal_rounded)),
-          ),
+          IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: TextField(
+                        controller: sampledata1,
+                        decoration: const InputDecoration(
+                          hintText: '',
+                          border: OutlineInputBorder(),
+                          labelText: 'Product Name',
+                        ),
+                        textInputAction: TextInputAction.next,
+                        onChanged: (str) {
+                          temp = str;
+                        },
+                      ),
+                      content: const Text('Are you sure ?'),
+                      actions: <Widget>[
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            sampledata1.clear();
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: const Color(0x86f57eb8)),
+                          child: const Text('No'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            setState(() {
+                              _items.add(temp!);
+                            });
+                            Map<String, dynamic> data = {
+                              "P_Name": sampledata1.text,
+                              'subcat':[]
+                            };
+                            FirebaseFirestore.instance
+                                .collection("Add Product")
+                                .add(data);
+                            Navigator.pop(context);
+                            sampledata1.clear();
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: const Color(0x86f57eb8)),
+                          child: const Text('Yes'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }),
+          IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                      return const New_Contact();
+                    }));
+              },
+              icon: const Icon(Icons.perm_contact_cal_rounded)),
         ],
       ),
       drawer: Drawer(
+        // backgroundColor: Color(0x86f57eb8),
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
+            const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color(0x86f57eb8),
               ),
+              child: Text('Welcome to \nEnjoy \nIce-Cream',style: TextStyle(fontSize: 30,color: Colors.black),),
             ),
             ListTile(
-              title: Text('Inventory Management'),
+              title: const Text('Inventory Management'),
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                      return inventory();
+                    }));
+              },
+            ),
+            ListTile(
+              title: const Text('Payment Mode'),
               onTap: () {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                  return inventory();
+                  return payment();
                 }));
               },
             ),
+            const Divider(),
             ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // TODO: implement item 2 action
-              },
-            ),
-            Divider(),
-            ListTile(
-              title: Text('Close Drawer'),
+              title: const Text('Close Drawer'),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -101,8 +168,8 @@ class _Home_ScreenState extends State<Home_Screen> {
         color: Colors.white,
         showLabel: false,
         notchColor: Colors.black87,
-        bottomBarItems: [
-          const BottomBarItem(
+        bottomBarItems: const [
+          BottomBarItem(
             inActiveItem: Icon(
               Icons.history,
               color: Colors.blueGrey,
@@ -113,7 +180,7 @@ class _Home_ScreenState extends State<Home_Screen> {
             ),
             itemLabel: 'Page 1',
           ),
-          const BottomBarItem(
+          BottomBarItem(
             inActiveItem: Icon(
               Icons.currency_rupee,
               color: Colors.blueGrey,
@@ -124,7 +191,7 @@ class _Home_ScreenState extends State<Home_Screen> {
             ),
             itemLabel: 'Page 2',
           ),
-          const BottomBarItem(
+          BottomBarItem(
             inActiveItem: Icon(
               Icons.add,
               color: Colors.blueGrey,
@@ -135,7 +202,7 @@ class _Home_ScreenState extends State<Home_Screen> {
             ),
             itemLabel: 'Page 4',
           ),
-          const BottomBarItem(
+          BottomBarItem(
             inActiveItem: Icon(
               Icons.restaurant_menu_outlined,
               color: Colors.blueGrey,
@@ -145,7 +212,8 @@ class _Home_ScreenState extends State<Home_Screen> {
               color: Colors.yellow,
             ),
             itemLabel: 'Page 5',
-          ),const BottomBarItem(
+          ),
+          BottomBarItem(
             inActiveItem: Icon(
               Icons.more,
               color: Colors.blueGrey,
@@ -170,27 +238,6 @@ class _Home_ScreenState extends State<Home_Screen> {
     );
   }
 }
-
-class Page1 extends StatelessWidget {
-  const Page1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.yellow, child: const Center(child: Text('Page 1')));
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.green, child: const Center(child: Text('Page 2')));
-  }
-}
-
 
 
 class Page5 extends StatelessWidget {
